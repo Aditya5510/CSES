@@ -1,28 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// will do it tomorrow
-
-// Consider a game where there are n children (numbered 1,2,\dots,n) in a circle. During the game, every other child is removed from the circle until there are no children left. In which order will the children be removed?
-// Input
-// The only input line has an integer n.
-// Output
-// Print n integers: the removal order.
+// Consider a game where there are n children(numbered 1, 2,\dots, n)
+// in a circle.During the game, every other child is removed from the circle until there are no children left.In which order will the children be removed ?
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     int n;
     cin >> n;
 
-    vector<int> arr;
-    int i = 2;
-
-    for (int i = 0; i < n; ++i)
+    list<int> children;
+    for (int i = 1; i <= n; i++)
     {
-        cout << arr[i] << " ";
+        children.push_back(i);
+    }
+
+    auto it = children.begin();
+
+    while (children.empty() == false)
+    {
+        ++it;
+        if (it == children.end())
+        {
+            it = children.begin();
+        }
+
+        cout << *it << " ";
+        it = children.erase(it);
+
+        if (it == children.end())
+        {
+            it = children.begin();
+        }
     }
 
     return 0;
